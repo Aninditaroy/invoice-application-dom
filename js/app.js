@@ -36,7 +36,9 @@ addButton.addEventListener('click', function () {
         itemQuantity.value == '') {
         return fail.style.display = 'block';
     }
-    td3
+    //create a class for total item in td3
+    td3.classList.add('item-total'); 
+    //get the value of table body from input value
     th.innerText = itemName.value;
     td1.innerText = itemPrice.value;
     td2.innerText = itemQuantity.value;
@@ -50,9 +52,31 @@ addButton.addEventListener('click', function () {
     itemName.value = '';
     itemPrice.value = '';
     itemQuantity.value = '';
+    totalCalculation();
 })
 
 // create element function for reuse
 function createElement(param) {
     return document.createElement(param);
 }
+
+function totalCalculation(){
+    const subTotal = calculateSubtotal();
+    const subTotalDisplay = document.getElementById('sub-total');
+    subTotalDisplay.innerText = subTotal;
+    const tax = subTotal * 0.2;;
+    document.getElementById('tax').innerText = tax.toFixed(3);
+    document.getElementById('grand-total').innerText = subTotal + tax;
+    document.getElementById('grand-total-2').innerText = subTotal + tax;
+}
+// calculate subtotal
+function calculateSubtotal() {
+    let subtotal = 0;
+    const costs = document.getElementsByClassName('item-total');
+    for (const cost of costs){
+        const price = parseInt(cost.innerText);
+        subtotal += price;
+    }
+    return subtotal;
+}
+
