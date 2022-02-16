@@ -59,7 +59,7 @@ addButton.addEventListener('click', function () {
 function createElement(param) {
     return document.createElement(param);
 }
-
+// calculate total
 function totalCalculation(){
     const subTotal = calculateSubtotal();
     const subTotalDisplay = document.getElementById('sub-total');
@@ -80,3 +80,12 @@ function calculateSubtotal() {
     return subtotal;
 }
 
+// reset
+
+document.getElementById('reset').addEventListener('click',function(){
+    document.getElementById('info-table').innerText = '';
+    document.getElementById('sub-total').innerText = '';
+    document.getElementById('tax').innerText = '';
+    document.getElementById('grand-total').innerText = '';
+    document.getElementById('grand-total-2').innerText = '';
+})
